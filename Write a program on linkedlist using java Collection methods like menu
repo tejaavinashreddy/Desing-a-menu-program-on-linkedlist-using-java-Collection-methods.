@@ -1,0 +1,204 @@
+import java.util.*;
+import java.lang.*;
+
+class Node
+{
+ int data;
+ Node next;
+}
+class ListMethods
+{
+ Node head;
+ void create(int ele)
+ {
+  Node n=new Node();
+  n.data=ele;
+  n.next=null;
+  if(head==null)
+  {
+   head=n;
+  }
+  else
+  {
+   Node temp;
+   temp=head;
+   while(temp.next!=null)
+   {
+    temp=temp.next;
+   }
+   temp.next=n;
+  }
+ }
+ void display()
+ {
+  if(head==null)
+  {
+   System.out.println("List is empty");
+  }
+  else
+  {
+   Node temp;
+   temp=head;
+   System.out.println("Elements in the list is");
+   while(temp.next!=null)
+   {
+    System.out.println(temp.data);
+    temp=temp.next;
+   }
+   System.out.println(temp.data);
+  }
+ }
+ void insertStart(int ele)
+ {
+  Node n=new Node();
+  n.data=ele;
+  n.next=null;
+  if(head==null)
+  {
+   head=n;
+  }
+  else
+  {
+   n.next=head;
+   head=n;
+  }
+ }
+ void insertLast(int ele)
+ {
+  Node n=new Node();
+  n.data=ele;
+  n.next=null;
+  Node temp;
+  temp=head;
+  while(temp.next!=null)
+  {
+   temp=temp.next;
+  }
+  temp.next=n;
+ }
+ void insertPos(int ele,int pos)
+ {
+  Node n=new Node();
+  n.data=ele;
+  n.next=null;
+  Node temp;
+  temp=head;
+  int i=1;
+  while(i<pos-1)
+  {
+   temp=temp.next;
+   i++;
+  }
+  n.next=temp.next;
+  temp.next=n;
+ }
+ void deleteFirst()
+ {
+  if(head==null)
+  {
+   System.out.println("list is empty");
+  }
+  else
+  {
+   Node temp;
+   temp=head;
+   head=head.next;
+   temp.next=null;
+  }
+ }
+ void deleteLast()
+ {
+  if(head==null)
+  {
+   System.out.println("list is empty");
+  }
+  else
+  {
+   Node temp;
+   temp=head;
+   while(temp.next.next!=null)
+   {
+    temp=temp.next;
+   }
+   temp.next=null;
+  }
+ }
+ void deletePos(int pos)
+ {
+  if(head==null)
+  {
+   System.out.println("list is empty");
+  }
+  else
+  {
+   Node temp;
+   temp=head;
+   int i=1;
+   while(i<pos-1)
+   {
+    temp=temp.next;
+    i++;
+   }
+   temp.next=temp.next.next;
+  }
+ }
+}
+class LinkedList
+{
+ public static void main(String args[])
+ {
+  Scanner sc=new Scanner(System.in);
+  int ele,pos,ch;
+  LinkedList ll= new LinkedList();
+  ListMethods lm=new ListMethods();
+  while(true)
+  {
+   System.out.println("1.Create   2.Display    3.Insert Start   4.Insert Last    5.Insert Position   6.Deleter First  7.Delete Last  8.Delete Position  9.exit");
+   System.out.println("enter your choice");
+   ch=sc.nextInt();
+   switch(ch)
+   {
+    case 1:
+    System.out.println("enter element");
+    ele=sc.nextInt();
+    lm.create(ele);
+    break;
+    case 2:
+    lm.display();
+    break;
+    case 3:
+    System.out.println("enter element");
+    ele=sc.nextInt();
+    lm.insertStart(ele);
+    break;
+    case 4:
+    System.out.println("enter element to insert");
+    ele=sc.nextInt();
+    lm.insertLast(ele);
+    break;
+    case 5:
+    System.out.println("enter element ");
+    ele=sc.nextInt();
+    System.out.println("enter position ");
+    pos=sc.nextInt();
+    lm.insertPos(ele,pos);
+    break;
+    case 6:
+    lm.deleteFirst();
+    break;
+    case 7:
+    lm.deleteLast();
+    break;
+    case 8:
+    System.out.println("enter position to delete");
+    pos=sc.nextInt();
+    lm.deletePos(pos);
+    break;
+    case 9:
+    System.exit(0);
+    default:
+    System.out.println("Invalid choice");
+   }
+  }
+ }
+}
